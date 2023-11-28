@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.scss";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./config/router.tsx";
 
 const client = new ApolloClient({
   uri: "https://graphql-pokeapi.graphcdn.app/",
@@ -9,7 +11,9 @@ const client = new ApolloClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <RouterProvider router={router} />
+    </ApolloProvider>
+  </React.StrictMode>,
 );
