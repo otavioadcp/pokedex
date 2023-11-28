@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "dragonite-color": "#ee9c39",
+        "dragonite-color": "#EFA448",
       },
     },
   },

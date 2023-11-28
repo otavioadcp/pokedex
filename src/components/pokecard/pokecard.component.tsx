@@ -12,7 +12,7 @@ function Pokecard(props: Props): React.ReactElement {
     >
       <img className="mx-auto w-2/4" src={props.image} />
       <div>
-        <h2 className="text-lg font-medium capitalize">
+        <h2 className="text-lg font-medium capitalize tracking-wide text-black">
           {props.name || "None"}
         </h2>
       </div>

@@ -34,7 +34,8 @@ function App() {
 
   return (
     <div id="root" className="bg-dragonite-color p-10">
-      <div className="grid grid-cols-5 gap-4">
+      <h1 className="mb-10 text-center text-5xl text-black">My Pokedex</h1>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {data.pokemons.results.map(({ id, name, image }: IPokemonListItem) => (
           <Pokecard id={id} image={image} name={name} />
         ))}
