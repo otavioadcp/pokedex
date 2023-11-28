@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.scss'
+import "./App.scss";
+import Pokecard from "./components/pokecard/pokecard.component";
+import { useQuery, gql } from "@apollo/client";
+import { IPokemonListItem } from "./models/i-pokemon-list-item";
+const GET_POKEMONS = gql`
+  query pokemons($limit: Int, $offset: Int) {
+    pokemons(limit: $limit, offset: $offset) {
+      count
+      next
+      previous
+      status
+      message
+      results {
+        url
+        name
+        image
+      }
+    }
+  }
+`;
+
+const gqlVariables = {
+  limit: 50,
+  offset: 0,
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { loading, error, data } = useQuery(GET_POKEMONS, {
+    variables: gqlVariables,
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div id="root" className="bg-dragonite-color p-10">
+      <div className="grid grid-cols-5 gap-4">
+        {data.pokemons.results.map(({ id, name, image }: IPokemonListItem) => (
+          <Pokecard id={id} image={image} name={name} />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

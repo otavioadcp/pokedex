@@ -1,10 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.scss'
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.scss";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+const client = new ApolloClient({
+  uri: "https://graphql-pokeapi.graphcdn.app/",
+  cache: new InMemoryCache(),
+});
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
-)
+  </ApolloProvider>,
+);
