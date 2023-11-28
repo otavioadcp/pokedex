@@ -1,6 +1,6 @@
-import Pokecard from "../../components/pokecard/pokecard.component";
-import { IPokemonListItem } from "../../models/i-pokemon-list-item";
-import { usePokemonList } from "../../hooks/usePokemonList";
+import Pokecard from "../components/pokecard/pokecard.component";
+import { IPokemonListItem } from "../models/i-pokemon-list-item";
+import { usePokemonList } from "../hooks/usePokemonList";
 
 function PokemonListPage() {
   const { loading, error, data } = usePokemonList();

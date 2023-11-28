@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemon } from "../hooks/usePokemon";
 
 function PokemonDetailsPage() {
   const { id } = useParams();
@@ -15,6 +15,11 @@ function PokemonDetailsPage() {
         className="mx-auto w-[10rem]"
         src={data.pokemon.sprites.front_default}
       />
+      <ul>
+        {data.pokemon.types.map((item: { type: { name: string } }) => (
+          <li className="text-2xl">{item.type.name || "None"}</li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import "./index.scss";
+import "./main.scss";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import React from "react";
 import { RouterProvider } from "react-router-dom";

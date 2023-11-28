@@ -7,6 +7,11 @@ const GET_POKEMON = gql`
       sprites {
         front_default
       }
+      types {
+        type {
+          name
+        }
+      }
     }
   }
 `;
